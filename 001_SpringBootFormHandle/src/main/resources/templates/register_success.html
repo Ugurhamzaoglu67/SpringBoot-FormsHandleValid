@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tyhmeleaf.org">
+
+<head th:replace="partials/_head :: myhead('Register Success')"></head>
+
+<style>
+
+	span {
+		
+			display:inline-block;
+			width:200px;
+			text-align:left;
+		}
+
+</style>
+
+<body>
+
+
+	 <!--  CONTENT -->
+		<div class="jumbotron text-center">
+					<a th:href="@{/register}">Register Page</a> |
+					<a th:href="@{/}" >HomePage</a>
+				 <h1 class="display-4 text-success">Registration Success</h1>
+				 <p class="lead"><span>Full name : </span> <span th:text="${user.name}"></span></p>
+				 <p class="lead"><span>E-mail : </span><span> [[${user.email}]]</span></p>
+		  		 <p class="lead"><span>Password : </span><span> [[${user.password}]]</span></p>
+				 <p class="lead"><span>Birthday : </span><span> [[${user.birthday}]]</span></p>
+				 <p class="lead"><span>Job : </span><span>[[${user.job}]]</span></p>
+	  			 <p class="lead"><span>Married ? : </span><span>[[${user.married}]]</span></p>
+			  	 <p class="lead"><span>Gender : </span><span>[[${user.gender}]]</span></p>
+			  	 <hr />
+			   	 <p class="lead"><span>Note : </span><span>[[${user.note}]]</span></p>
+			 
+		</div>
+	<!--  CONTENT -->
+	
+
+	<!--  FOOTER -->
+		<footer th:replace="partials/_footer :: myfooter"></footer>
+	<!--  FOOTER -->
+</body>
+</html>

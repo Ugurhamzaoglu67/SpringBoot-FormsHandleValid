@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tyhmeleaf.org">
+
+	<head th:replace="partials/_head :: myhead('Register Page')"></head>
+<body>
+
+
+	<div class="text-center">
+		<h1>Register Form</h1>
+		<a th:href="@{/}" >HomePage</a>
+		
+		<form action="#" th:action="@{/register}" method="POST" th:object="${user}" 
+			style="max-width:750px;margin:0 auto;margin-bottom:5rem !important;margin-top:20px;">
+			
+			<!--  User name -->
+			<div class="form-group row">
+				<label>User name : </label>
+				<div class="col-sm-9">
+					<input type="text" th:field="*{name}" class="form-control" />
+				</div>
+				
+				
+			</div>
+			
+			<!--  email -->
+			<div class="form-group row">
+				<label>E-mail : </label>
+				<div class="col-sm-9">
+					<input type="text"  th:field="*{email}" class="form-control"/>	
+				</div>
+			</div>
+			
+			<!--  password -->
+			<div class="form-group row">
+				<label>Password</label>
+				
+				<div class="col-sm-9">
+					<input type="password" class="form-control" th:field="*{password}" />
+				</div>
+			</div>
+			
+			<!--  birthday -->
+			<div class="form-group row">
+				<label>Birthday (YYYY-mm-dd)</label>
+				
+				<div class="col-sm-9">
+					<input type="text" class="form-control" th:field="*{birthday}" />
+				</div>
+			</div>
+			
+			
+			<!--  jobList  -->
+			<div class="form-group row">
+				<label>Job : </label>
+				<select th:field="*{job}" class="ml-3">
+					<option th:each="j : ${jobList}" th:value="${j}" th:text="${j}"></option>
+				</select>
+			
+			</div>
+			
+			<!-- married checkbox -->
+			<div class="form-group row">
+				<label>Married ? : </label>
+				<input type="checkbox" th:field="*{married}" class="mt-2 ml-3" />
+			</div>
+			
+			
+			<!-- gender radio -->
+			<div class="form-group row">
+				<label>Gender : </label>
+				<div>
+				  	<input type="radio" th:field="*{gender}" value="Male" class="ml-3" /> Male &nbsp;
+				  	<input type="radio" th:field="*{gender}" value="Female"/> Female
+			  	</div>
+			</div>
+			
+			<!-- note -->
+			<div class="form-group row">
+				<label>Note : </label>
+				<div class="col-sm-9">
+					<textarea class="form-control" rows="5" cols="25" th:field="*{note}" ></textarea>
+				</div>
+			</div>
+			
+			<button type="submit" class="btn btn-primary mt-2">Send</button>
+		</form>
+		
+		
+		
+	</div>
+
+
+
+
+
+</body>
+</html>
