@@ -8,10 +8,14 @@
 	<style>
 		.mycol {
 			margin-top: 5rem;
-		    border: 1px solid black;
-		    padding: 45px 45px;
+		   
+		  	padding:0 0;
 		    border-radius:5px;
 		
+		}
+		
+		body {
+			background-color:#e2e2e2;		
 		}
 	
 	</style>
@@ -24,24 +28,25 @@
 			<div class="col-md-6 mx-auto mycol">
 			
 			<!--  FORM  -->
-				<form th:action="@{/formpost}" method="post" th:object="${loginData}">
+				<form  th:action="@{/formpost}" method="post" th:object="${loginData}" class="bg-white p-4">
 				
 				
 				<!-- Email address -->
 				  <div class="form-group">
-				    <label for="exampleInputEmail1">Email address</label>
-				    <input
-				     	type="email" 
-				     	name="email"
-				     	th:field="*{email}"
-				    	class="form-control" 
-				    	id="exampleInputEmail1">
-				    	
-				<!-- <h1 th:if="${#fields.hasErrors('email')}">Invalid  Email</h1> -->
-				<p th:each="e : ${#fields.errors('email')}">
-					[[${e}]]
-				</p>
-				  
+			    	 <label for="exampleInputEmail1">Email address</label>
+				   
+				      <input
+					     	type="email" 
+					     	name="email"
+					     	th:field="*{email}"
+					    	class="form-control" 
+					    	th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
+					    	
+					    	id="exampleInputEmail1">
+				      <div th:each="e : ${#fields.errors('email')}"  class="invalid-feedback">
+					  	[[${e}]]
+					  </div>
+				
 				  </div>
 				  
 				  
@@ -50,20 +55,34 @@
 				    <label for="exampleInputPassword1">Password</label>
 				    <input 
 				    	type="password" 
-				    	name="password"
+				    	
 				    	th:field="*{password}"
+				    	th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"
 				    	class="form-control" 
 				    	id="exampleInputPassword1">
+				    	
+					     <div th:each="e : ${#fields.errors('password')}"  class="invalid-feedback">
+					  	[[${e}]]
+					  </div>	
+				    	
 				  </div>
+				  
+				  
 				  
 				  
 				  <!-- checkbox -->
 				  <div class="form-group form-check">
 				    <input 
 				    	type="checkbox" 
+				    	th:field="*{agreed}"
 				    	class="form-check-input" 
+				    	th:classappend="${#fields.hasErrors('agreed') ? 'is-invalid' : ''}"
 				    	id="exampleCheck1">
-				    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+				    	
+				    <label class="form-check-label" for="exampleCheck1">Agree terms and conditions</label>
+				    <div th:each="e : ${#fields.errors('agreed')}" class="invalid-feedback" th:text="${e}">
+				    	
+				    </div>
 				  </div>
 				  
 				  <button type="submit" class="btn btn-primary">Submit</button>
