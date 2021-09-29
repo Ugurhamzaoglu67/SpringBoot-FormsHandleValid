@@ -26,27 +26,38 @@
 			<!--  FORM  -->
 				<form th:action="@{/formpost}" method="post" th:object="${loginData}">
 				
+				
+				<!-- Email address -->
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Email address</label>
 				    <input
 				     	type="email" 
-				     	name="userName"
-				     	th:value="${loginData.userName}"
+				     	name="email"
+				     	th:field="*{email}"
 				    	class="form-control" 
 				    	id="exampleInputEmail1">
+				    	
+				<!-- <h1 th:if="${#fields.hasErrors('email')}">Invalid  Email</h1> -->
+				<p th:each="e : ${#fields.errors('email')}">
+					[[${e}]]
+				</p>
 				  
 				  </div>
 				  
+				  
+				  <!--  password -->
 				  <div class="form-group">
 				    <label for="exampleInputPassword1">Password</label>
 				    <input 
 				    	type="password" 
 				    	name="password"
-				    	th:value="${loginData.password}";
+				    	th:field="*{password}"
 				    	class="form-control" 
 				    	id="exampleInputPassword1">
 				  </div>
 				  
+				  
+				  <!-- checkbox -->
 				  <div class="form-group form-check">
 				    <input 
 				    	type="checkbox" 
@@ -61,11 +72,12 @@
 			</div>
 		</div>
 		
+	
 		
 	<div th:if="${loginDataModelmessage != null}" class="text-success bg-dark mt-3 ">
 		<div class="row ">
 		
-			<p class="ml-4 text-center">[[${loginDataModelmessage.userName}]]</p>
+			<p class="ml-4 text-center">[[${loginDataModelmessage.email}]]</p>
 			<p class="ml-4 text-center">[[${loginDataModelmessage.password}]]</p>
 		</div>
 		

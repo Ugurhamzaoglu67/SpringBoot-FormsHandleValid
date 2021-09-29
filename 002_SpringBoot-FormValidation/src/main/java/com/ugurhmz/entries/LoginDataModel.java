@@ -1,21 +1,30 @@
 package com.ugurhmz.entries;
 
 
-
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class LoginDataModel {
 
-	private String userName;
+	
+	@NotBlank(message="E-mail can not be empty!!")
+	//@Email(message="Wrong e-mail!!")
+	private String email;
+	
+	
+	
+	@NotBlank(message="Password can not be empty!!")
+	@Size(min=8, max=100, message="Password must be min 8 between max=100 characters")
 	private String password;
 	
 	
 	
 	// GETTER SETTER
-	public String getUserName() {
-		return userName;
+	public String getEmail() {
+		return email;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getPassword() {
 		return password;
@@ -25,7 +34,7 @@ public class LoginDataModel {
 	}
 	@Override
 	public String toString() {
-		return  userName + " " + password ;
+		return  email + " " + password ;
 	}
 	
 	
